@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
+import VoteButton from './VoteButton';
 
 export default function ThreadCard({ thread }) {
-  const { id, title, body, createdAt, user, subforum } = thread;
+  const { id: threadId, title, body, createdAt, user, subforum, upvotes, downvotes, userVote } = thread;
 
   return (
     <div className="bg-white border border-gray-200 rounded-md shadow-sm hover:border-gray-400 transition-colors duration-200 mb-4 overflow-hidden">
-      <Link to={`/threads/${id}`} className="block p-4">
+      <Link to={`/threads/${threadId}`} className="block p-4">
         <div className="flex items-center text-xs text-gray-500 mb-2 space-x-2">
           {subforum && (
             <span className="font-bold text-gray-900 hover:underline">
@@ -25,15 +26,13 @@ export default function ThreadCard({ thread }) {
         </p>
 
         <div className="flex items-center space-x-4 text-gray-500 text-xs font-bold">
-          <div className="flex items-center space-x-1 bg-gray-100 p-1 px-2 rounded-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-            </svg>
-            <span>Vote</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
+          <VoteButton
+            threadId={threadId}
+            initialUpvotes={upvotes}
+            initialDownvotes={downvotes}
+            initialUserVote={userVote}
+            className="rounded-sm"
+          />
 
           <div className="flex items-center space-x-1 hover:bg-gray-100 p-1 px-2 rounded-sm transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

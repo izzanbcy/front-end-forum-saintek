@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../services/api';
+import VoteButton from '../components/VoteButton';
+import CommentSection from '../components/CommentSection';
 
 export default function ThreadDetail() {
   const { id } = useParams();
@@ -45,7 +47,7 @@ export default function ThreadDetail() {
     );
   }
 
-  const { title, body, createdAt, user, subforum } = thread;
+  const { id: threadId, title, body, createdAt, user, subforum, upvotes, downvotes, userVote } = thread;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -78,17 +80,15 @@ export default function ThreadDetail() {
             {body}
           </div>
 
-          {/* Action Bar (Simple) */}
+          {/* Action Bar */}
           <div className="flex items-center space-x-4 text-gray-500 text-sm border-t border-gray-100 pt-4">
-             <div className="flex items-center space-x-1 bg-gray-100 p-1 px-3 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-              </svg>
-              <span className="font-bold">Vote</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
+            <VoteButton
+              threadId={threadId}
+              initialUpvotes={upvotes}
+              initialDownvotes={downvotes}
+              initialUserVote={userVote}
+              className="rounded-full px-4"
+            />
 
             <div className="flex items-center space-x-2">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -100,17 +100,8 @@ export default function ThreadDetail() {
         </div>
       </div>
 
-      {/* Comment Section Placeholder */}
-      <div className="mt-6 bg-white rounded-lg shadow-md p-6">
-        <h3 className="text-xl font-bold mb-6 text-gray-900">Comments</h3>
-        <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-10 text-center text-gray-500">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-          </svg>
-          <p className="text-lg font-medium">Comment section is coming soon!</p>
-          <p className="text-sm mt-2">You will be able to join the discussion in the next update.</p>
-        </div>
-      </div>
+      {/* Comment Section */}
+      <CommentSection threadId={threadId} />
     </div>
   );
 }
