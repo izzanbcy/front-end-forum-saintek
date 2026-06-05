@@ -10,6 +10,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const setToken = useAuthStore((state) => state.setToken);
+  const setRefreshToken = useAuthStore((state) => state.setRefreshToken);
   const setUser = useAuthStore((state) => state.setUser);
 
   const handleSubmit = async (e) => {
@@ -19,15 +20,16 @@ export default function Login() {
 
     try {
       // 1. Login to get token
-      const loginResponse = await api.post('/api/authentications', { email, password });
-      const { accessToken } = loginResponse.data.data;
+      const loginResponse = await api.post('/authentications', { email, password });
+      const { accessToken, refreshToken } = loginResponse.data.data;
 
-      // 2. Save token to Zustand
+      // 2. Save tokens to Zustand
       setToken(accessToken);
+      setRefreshToken(refreshToken);
 
       // 3. Fetch user profile
-      const userResponse = await api.get('/api/users/me');
-      const userData = userResponse.data.data.user;
+      const userResponse = await api.get('/users/me');
+      const userData = userResponse.data.data;
 
       // 4. Save user data to Zustand
       setUser(userData);
@@ -35,9 +37,16 @@ export default function Login() {
       // 5. Redirect to home
       navigate('/');
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
-      // If login was successful but profile fetch failed, we might want to logout
-      // but according to requirements we just need to implement this flow.
+      if (err.response) {
+        // Error yang dikirim dari server
+        setError(err.response.data?.message || `Gagal login. Server merespon dengan status ${err.response.status}.`);
+      } else if (err.request) {
+        // Tidak ada respon dari server
+        setError('Tidak dapat terhubung ke server. Silakan periksa koneksi internet Anda.');
+      } else {
+        // Kesalahan lainnya
+        setError('Maaf, terjadi kesalahan saat mencoba masuk.');
+      }
     } finally {
       setIsLoading(false);
     }

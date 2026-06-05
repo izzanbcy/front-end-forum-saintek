@@ -17,13 +17,13 @@ export default function Home() {
       try {
         setLoading(true);
         const [threadsRes, subforumsRes] = await Promise.all([
-          api.get('/api/threads'),
-          api.get('/api/subforums'),
+          api.get('/threads'),
+          api.get('/subforums'),
         ]);
 
         // Handling both possible response structures (direct array or data property)
-        const threadsData = threadsRes.data?.data?.threads || threadsRes.data?.threads || (Array.isArray(threadsRes.data) ? threadsRes.data : []);
-        const subforumsData = subforumsRes.data?.data?.subforums || subforumsRes.data?.subforums || (Array.isArray(subforumsRes.data) ? subforumsRes.data : []);
+        const threadsData = threadsRes.data?.data || [];
+        const subforumsData = subforumsRes.data?.data || [];
 
         setThreads(threadsData);
         setSubforums(subforumsData);

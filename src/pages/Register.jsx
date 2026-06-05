@@ -5,6 +5,8 @@ import api from '../services/api';
 export default function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [prodi, setProdi] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -16,17 +18,32 @@ export default function Register() {
     setIsLoading(true);
 
     try {
-      await api.post('/api/users', { username, email, password });
+      await api.post('/users', { 
+        username, 
+        email, 
+        password,
+        fullName,
+        prodi 
+      });
       navigate('/login');
     } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed. Please try again.');
+      if (err.response) {
+        // Error yang dikirim dari server (misal: validasi gagal)
+        setError(err.response.data?.message || `Terjadi kesalahan pada server (${err.response.status}).`);
+      } else if (err.request) {
+        // Tidak ada respon dari server
+        setError('Tidak dapat terhubung ke server. Periksa koneksi internet Anda.');
+      } else {
+        // Kesalahan lainnya
+        setError('Maaf, terjadi kesalahan saat memproses pendaftaran Anda.');
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-12">
       <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Register</h2>
 
@@ -36,9 +53,24 @@ export default function Register() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+            <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="fullName">
+              Full Name
+            </label>
+            <input
+              id="fullName"
+              type="text"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Your full name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="username">
               Username
             </label>
             <input
@@ -53,14 +85,14 @@ export default function Register() {
           </div>
 
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              Email
+            <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="email">
+              Email (University Domain)
             </label>
             <input
               id="email"
               type="email"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="you@example.com"
+              placeholder="you@mhs.unsri.ac.id"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -68,7 +100,22 @@ export default function Register() {
           </div>
 
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="prodi">
+              Program Studi
+            </label>
+            <input
+              id="prodi"
+              type="text"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Teknik Informatika"
+              value={prodi}
+              onChange={(e) => setProdi(e.target.value)}
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="password">
               Password
             </label>
             <input
