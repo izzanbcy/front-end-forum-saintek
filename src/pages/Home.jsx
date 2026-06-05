@@ -98,11 +98,25 @@ export default function Home() {
           )}
 
           <div className="flex justify-between items-center mb-4 px-1 lg:px-0">
-            <h1 className="text-sm font-bold text-gray-500 uppercase tracking-wider">Recent Threads</h1>
-            <div className="flex items-center gap-2 text-xs font-bold text-gray-500">
-              <span className="text-blue-600">New</span>
-              <span className="hover:text-blue-600 cursor-pointer">Hot</span>
-              <span className="hover:text-blue-600 cursor-pointer">Top</span>
+            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-md p-2 w-full lg:w-auto">
+              <button className="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded-full text-xs font-bold text-blue-600 transition-colors">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-1.459-1.103-2.316a.75.75 0 00-.112-.365 7.448 7.448 0 00-.34-.816zM10 17a3 3 0 110-6 3 3 0 010 6z" clipRule="evenodd" />
+                </svg>
+                Hot
+              </button>
+              <button className="flex items-center gap-1 px-3 py-1 hover:bg-gray-100 rounded-full text-xs font-bold text-gray-500 transition-colors">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707-.707" />
+                </svg>
+                New
+              </button>
+              <button className="flex items-center gap-1 px-3 py-1 hover:bg-gray-100 rounded-full text-xs font-bold text-gray-500 transition-colors">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+                Top
+              </button>
             </div>
           </div>
 

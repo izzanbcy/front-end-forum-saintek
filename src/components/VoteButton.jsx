@@ -65,8 +65,10 @@ export default function VoteButton({ threadId, initialUpvotes = 0, initialDownvo
 
   const totalScore = upvotes - downvotes;
 
+  const isCol = className.includes('flex-col');
+
   return (
-    <div className={`flex items-center space-x-1 bg-gray-100 p-1 px-2 rounded-md ${className}`}>
+    <div className={`flex items-center gap-1 ${!isCol ? 'bg-gray-100 p-1 px-2 rounded-md' : ''} ${className}`}>
       <button
         onClick={(e) => {
           e.preventDefault();
@@ -82,7 +84,7 @@ export default function VoteButton({ threadId, initialUpvotes = 0, initialDownvo
         </svg>
       </button>
 
-      <span className={`font-bold text-sm min-w-[1.5rem] text-center ${userVote === 1 ? 'text-orange-600' : userVote === -1 ? 'text-blue-600' : 'text-gray-700'}`}>
+      <span className={`font-bold text-xs md:text-sm min-w-[1.5rem] text-center ${userVote === 1 ? 'text-orange-600' : userVote === -1 ? 'text-blue-600' : 'text-gray-900'}`}>
         {totalScore}
       </span>
 
