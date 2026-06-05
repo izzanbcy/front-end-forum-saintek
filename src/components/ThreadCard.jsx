@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import VoteButton from './VoteButton';
 
 export default function ThreadCard({ thread }) {
-  const { id: threadId, title, content, createdAt, author, subforum, _count } = thread;
+  const { id, title, content, createdAt, author, subforum, _count } = thread;
   const upvotes = _count?.votes || 0; // Backend currently only gives total votes in _count
   const downvotes = 0; 
   const userVote = null;
@@ -13,7 +13,7 @@ export default function ThreadCard({ thread }) {
     if (e.target.closest('a') || e.target.closest('button')) {
       return;
     }
-    navigate(`/threads/${threadId}`);
+    navigate(`/threads/${id}`);
   };
 
   return (
@@ -34,28 +34,37 @@ export default function ThreadCard({ thread }) {
           <span>{new Date(createdAt).toLocaleDateString()}</span>
         </div>
 
-        <Link to={`/threads/${threadId}`} className="block">
+        <Link to={`/threads/${id}`} className="block">
           <h2 className="text-lg font-semibold text-gray-900 mb-2 hover:underline">{title}</h2>
         </Link>
 
-        <p className="text-gray-700 text-sm line-clamp-3 mb-4">
-          {content}
+        <p className="text-gray-700 text-sm mb-4">
+          {content?.length > 150 ? (
+            <>
+              {content.substring(0, 150)}...
+              <Link to={`/threads/${id}`} className="text-blue-600 hover:underline ml-1 font-medium">
+                view more
+              </Link>
+            </>
+          ) : (
+            content
+          )}
         </p>
 
         <div className="flex items-center space-x-4 text-gray-500 text-xs font-bold">
           <VoteButton
-            threadId={threadId}
+            threadId={id}
             initialUpvotes={upvotes}
             initialDownvotes={downvotes}
             initialUserVote={userVote}
             className="rounded-sm"
           />
 
-          <Link to={`/threads/${threadId}`} className="flex items-center space-x-1 hover:bg-gray-100 p-1 px-2 rounded-sm transition-colors">
+          <Link to={`/threads/${id}`} className="flex items-center space-x-1 hover:bg-gray-100 p-1 px-2 rounded-sm transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </svg>
-            <span>Comments</span>
+            <span>{_count?.comments || 0} Comments</span>
           </Link>
         </div>
       </div>
