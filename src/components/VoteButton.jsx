@@ -66,14 +66,14 @@ export default function VoteButton({ threadId, initialUpvotes = 0, initialDownvo
   const totalScore = upvotes - downvotes;
 
   return (
-    <div className={`flex items-center space-x-1 bg-gray-100 p-1 px-2 rounded-md ${className}`}>
+    <div className={`flex items-center space-x-1 bg-matcha-50 p-1 px-2 rounded-md border border-matcha-100 ${className}`}>
       <button
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
           handleVote('upvote');
         }}
-        className={`hover:bg-gray-200 rounded p-1 transition-colors ${userVote === 1 ? 'text-orange-600' : 'text-gray-500'}`}
+        className={`hover:bg-matcha-100 rounded p-1 transition-colors ${userVote === 1 ? 'text-strawberry-600' : 'text-matcha-700'}`}
         disabled={isLoading}
         title="Upvote"
       >
@@ -82,7 +82,7 @@ export default function VoteButton({ threadId, initialUpvotes = 0, initialDownvo
         </svg>
       </button>
 
-      <span className={`font-bold text-sm min-w-[1.5rem] text-center ${userVote === 1 ? 'text-orange-600' : userVote === -1 ? 'text-blue-600' : 'text-gray-700'}`}>
+      <span className={`font-bold text-sm min-w-[1.5rem] text-center ${userVote === 1 ? 'text-strawberry-600' : userVote === -1 ? 'text-matcha-900' : 'text-matcha-800'}`}>
         {totalScore}
       </span>
 
@@ -92,7 +92,7 @@ export default function VoteButton({ threadId, initialUpvotes = 0, initialDownvo
           e.stopPropagation();
           handleVote('downvote');
         }}
-        className={`hover:bg-gray-200 rounded p-1 transition-colors ${userVote === -1 ? 'text-blue-600' : 'text-gray-500'}`}
+        className={`hover:bg-matcha-100 rounded p-1 transition-colors ${userVote === -1 ? 'text-matcha-900' : 'text-matcha-700'}`}
         disabled={isLoading}
         title="Downvote"
       >

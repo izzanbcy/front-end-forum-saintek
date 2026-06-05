@@ -18,12 +18,12 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white border-b border-strawberry-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="text-xl font-bold text-blue-600">
-              Forum SAINTEK
+            <Link to="/" className="text-xl font-bold text-matcha-600">
+              Forum <span className="text-strawberry-500">SAINTEK</span>
             </Link>
           </div>
           <div className="flex items-center space-x-4">
@@ -32,7 +32,7 @@ export default function Navbar() {
                 <span className="text-gray-700 font-medium">Hello, {user.username || user.name}</span>
                 <button
                   onClick={handleLogout}
-                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-200"
+                  className="bg-strawberry-500 hover:bg-strawberry-600 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-200"
                 >
                   Logout
                 </button>
@@ -41,13 +41,13 @@ export default function Navbar() {
               <>
                 <Link
                   to="/login"
-                  className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-700 hover:text-matcha-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   Login
                 </Link>
                 <Link
                   to="/register"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-200"
+                  className="bg-matcha-600 hover:bg-matcha-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-200 shadow-sm"
                 >
                   Register
                 </Link>

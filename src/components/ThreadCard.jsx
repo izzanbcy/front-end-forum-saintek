@@ -18,7 +18,7 @@ export default function ThreadCard({ thread }) {
 
   return (
     <div
-      className="bg-white border border-gray-200 rounded-md shadow-sm hover:border-gray-400 transition-colors duration-200 mb-4 overflow-hidden cursor-pointer"
+      className="bg-white border border-strawberry-100 rounded-md shadow-sm hover:border-strawberry-300 transition-colors duration-200 mb-4 overflow-hidden cursor-pointer"
       onClick={handleCardClick}
     >
       <div className="p-4">
@@ -35,7 +35,7 @@ export default function ThreadCard({ thread }) {
         </div>
 
         <Link to={`/threads/${threadId}`} className="block">
-          <h2 className="text-lg font-semibold text-gray-900 mb-2 hover:underline">{title}</h2>
+          <h2 className="text-lg font-semibold text-matcha-900 mb-2 hover:underline">{title}</h2>
         </Link>
 
         <p className="text-gray-700 text-sm line-clamp-3 mb-4">

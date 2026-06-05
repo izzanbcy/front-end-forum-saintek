@@ -81,8 +81,8 @@ export default function CreateThread() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h1 className="text-2xl font-bold mb-6 text-gray-900">Create a New Thread</h1>
+      <div className="bg-white rounded-lg shadow-md p-6 border border-strawberry-100">
+        <h1 className="text-2xl font-bold mb-6 text-matcha-900">Create a New Thread</h1>
 
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6" role="alert">
@@ -99,7 +99,7 @@ export default function CreateThread() {
               id="subforum"
               value={subforumSlug}
               onChange={(e) => setSubforumSlug(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-matcha-500"
               required
             >
               <option value="" disabled>Select a subforum</option>
@@ -121,7 +121,7 @@ export default function CreateThread() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="What's on your mind?"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-matcha-500"
               required
               maxLength={255}
             />
@@ -137,7 +137,7 @@ export default function CreateThread() {
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Share your thoughts..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-matcha-500"
               required
             ></textarea>
           </div>
@@ -153,7 +153,7 @@ export default function CreateThread() {
             <button
               type="submit"
               disabled={isLoading}
-              className={`px-6 py-2 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`px-6 py-2 bg-matcha-600 text-white font-bold rounded-md hover:bg-matcha-700 focus:outline-none focus:ring-2 focus:ring-matcha-500 transition duration-200 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               {isLoading ? 'Posting...' : 'Post Thread'}
             </button>

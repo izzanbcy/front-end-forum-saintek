@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 export default function SubforumSidebar({ subforums }) {
   return (
-    <div className="bg-white border border-gray-200 rounded-md shadow-sm overflow-hidden">
-      <div className="bg-blue-600 p-4">
+    <div className="bg-white border border-strawberry-100 rounded-md shadow-sm overflow-hidden">
+      <div className="bg-matcha-600 p-4">
         <h2 className="text-white font-bold">Popular Subforums</h2>
       </div>
       <div className="p-2">

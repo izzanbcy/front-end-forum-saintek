@@ -41,7 +41,7 @@ export default function Home() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-matcha-600"></div>
       </div>
     );
   }
@@ -62,11 +62,11 @@ export default function Home() {
         {/* Main Content: Feed Thread */}
         <div className="w-full lg:w-2/3">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold">Recent Threads</h1>
+            <h1 className="text-2xl font-bold text-matcha-900">Recent Threads</h1>
             {token && (
               <Link
                 to="/create-thread"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-bold transition duration-200 flex items-center"
+                className="bg-matcha-600 hover:bg-matcha-700 text-white px-4 py-2 rounded-md text-sm font-bold transition duration-200 flex items-center shadow-sm"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />

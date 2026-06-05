@@ -50,7 +50,7 @@ export default function SubforumDetail() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-matcha-600"></div>
       </div>
     );
   }
@@ -61,7 +61,7 @@ export default function SubforumDetail() {
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
           <span className="block sm:inline">{error || 'Subforum not found.'}</span>
         </div>
-        <Link to="/" className="text-blue-600 hover:underline">Return to Home</Link>
+        <Link to="/" className="text-strawberry-600 hover:underline font-medium">Return to Home</Link>
       </div>
     );
   }
@@ -69,16 +69,16 @@ export default function SubforumDetail() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Subforum Banner */}
-      <div className="bg-white border border-gray-200 rounded-md shadow-sm mb-8 overflow-hidden">
-        <div className="h-24 bg-blue-600"></div>
+      <div className="bg-white border border-strawberry-100 rounded-md shadow-sm mb-8 overflow-hidden">
+        <div className="h-24 bg-matcha-600"></div>
         <div className="px-6 py-4 flex flex-col md:flex-row md:items-end -mt-12 md:-mt-8 gap-4">
           <div className="bg-white p-2 rounded-full border-4 border-white shadow-md inline-block">
-            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center text-blue-600 text-2xl font-bold">
+            <div className="bg-strawberry-50 w-16 h-16 rounded-full flex items-center justify-center text-strawberry-500 text-2xl font-bold">
               s/
             </div>
           </div>
           <div className="mb-2">
-            <h1 className="text-2xl font-extrabold text-gray-900">s/{subforum.name}</h1>
+            <h1 className="text-2xl font-extrabold text-matcha-900">s/{subforum.name}</h1>
             <p className="text-gray-600">{subforum.description}</p>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function SubforumDetail() {
               <p className="text-gray-500">No threads yet in this subforum. Why not start one?</p>
               <Link
                 to="/create-thread"
-                className="inline-block mt-4 text-blue-600 font-bold hover:underline"
+                className="inline-block mt-4 text-matcha-600 font-bold hover:underline"
               >
                 Create the first thread
               </Link>

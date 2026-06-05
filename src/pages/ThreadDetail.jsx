@@ -31,7 +31,7 @@ export default function ThreadDetail() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-matcha-600"></div>
       </div>
     );
   }
@@ -42,7 +42,7 @@ export default function ThreadDetail() {
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
           <span className="block sm:inline">{error || 'Thread not found.'}</span>
         </div>
-        <Link to="/" className="text-blue-600 hover:underline">Return to Home</Link>
+        <Link to="/" className="text-strawberry-600 hover:underline font-medium">Return to Home</Link>
       </div>
     );
   }
@@ -54,14 +54,14 @@ export default function ThreadDetail() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <Link to="/" className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition-colors duration-200">
+      <Link to="/" className="inline-flex items-center text-matcha-700 hover:text-matcha-800 mb-6 transition-colors duration-200 font-medium">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
         Back to Home
       </Link>
 
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
+      <div className="bg-white rounded-lg shadow-md overflow-hidden border border-strawberry-100">
         <div className="p-6">
           {/* Header Info */}
           <div className="flex items-center text-xs text-gray-500 mb-3 space-x-2">
@@ -77,7 +77,7 @@ export default function ThreadDetail() {
           </div>
 
           {/* Thread Content */}
-          <h1 className="text-3xl font-extrabold text-gray-900 mb-6">{title}</h1>
+          <h1 className="text-3xl font-extrabold text-matcha-900 mb-6">{title}</h1>
 
           <div className="text-lg leading-relaxed text-gray-800 whitespace-pre-wrap mb-8">
             {content}
