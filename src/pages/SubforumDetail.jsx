@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import api from '../services/api';
 import ThreadCard from '../components/ThreadCard';
 import SubforumSidebar from '../components/SubforumSidebar';
+import NavigationSidebar from '../components/NavigationSidebar';
 
 export default function SubforumDetail() {
   const { slug } = useParams();
@@ -72,7 +73,7 @@ export default function SubforumDetail() {
       <div className="bg-white border border-gray-200 rounded-md shadow-sm mb-8 overflow-hidden">
         <div className="h-24 bg-blue-600"></div>
         <div className="px-6 py-4 flex flex-col md:flex-row md:items-end -mt-12 md:-mt-8 gap-4">
-          <div className="bg-white p-2 rounded-full border-4 border-white shadow-md inline-block">
+          <div className="bg-white p-2 rounded-full border-4 border-white shadow-md inline-block shrink-0">
             <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center text-blue-600 text-2xl font-bold">
               s/
             </div>
@@ -84,11 +85,24 @@ export default function SubforumDetail() {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Left Sidebar: Navigation */}
+        <aside className="hidden lg:block lg:col-span-3 xl:col-span-2">
+          <div className="sticky top-24">
+            <NavigationSidebar subforums={subforums} />
+          </div>
+        </aside>
+
         {/* Main Content: Thread List */}
-        <div className="w-full lg:w-2/3">
-          <div className="mb-6">
-            <h2 className="text-xl font-bold text-gray-900">Threads in s/{subforum.name}</h2>
+        <div className="w-full lg:col-span-6 xl:col-span-7">
+          <div className="mb-4 flex items-center justify-between px-1 lg:px-0">
+            <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wider">Recent Posts in s/{subforum.name}</h2>
+            <Link
+              to="/create-thread"
+              className="text-xs font-bold text-blue-600 hover:underline"
+            >
+              + Create Post
+            </Link>
           </div>
 
           {threads.length > 0 ? (
@@ -110,16 +124,32 @@ export default function SubforumDetail() {
           )}
         </div>
 
-        {/* Sidebar */}
-        <aside className="w-full lg:w-1/3">
-          <div className="sticky top-8">
-            <SubforumSidebar subforums={subforums} />
-            <div className="mt-4 p-4 bg-white border border-gray-200 rounded-md shadow-sm">
-              <h3 className="font-bold text-sm mb-2">About s/{subforum.name}</h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
+        {/* Right Sidebar */}
+        <aside className="hidden lg:block lg:col-span-3">
+          <div className="sticky top-24 space-y-4">
+            <div className="p-4 bg-white border border-gray-200 rounded-md shadow-sm">
+              <h3 className="font-bold text-sm mb-2 uppercase text-gray-500 tracking-wider">About Community</h3>
+              <p className="text-sm text-gray-700 leading-relaxed mb-4">
                 {subforum.description || `Welcome to the ${subforum.name} subforum!`}
               </p>
+              <div className="flex flex-col gap-2">
+                <div className="flex justify-between text-xs">
+                  <span className="font-bold">Created</span>
+                  <span className="text-gray-500">Feb 20, 2024</span>
+                </div>
+                <div className="flex justify-between text-xs">
+                  <span className="font-bold">Members</span>
+                  <span className="text-gray-500">1.2k</span>
+                </div>
+              </div>
+              <Link
+                to="/create-thread"
+                className="mt-6 block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-2 rounded-full text-sm font-bold transition-colors"
+              >
+                Create Post
+              </Link>
             </div>
+            <SubforumSidebar subforums={subforums} />
           </div>
         </aside>
       </div>
