@@ -4,7 +4,7 @@ import api from '../services/api';
 import useAuthStore from '../store/authStore';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +20,7 @@ export default function Login() {
 
     try {
       // 1. Login to get token
-      const loginResponse = await api.post('/authentications', { email, password });
+      const loginResponse = await api.post('/authentications', { identifier, password });
       const { accessToken, refreshToken } = loginResponse.data.data;
 
       // 2. Save tokens to Zustand
@@ -65,16 +65,16 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              Email
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="identifier">
+              Email or Username
             </label>
             <input
-              id="email"
-              type="email"
+              id="identifier"
+              type="text"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email or username"
+              value={identifier}
+              onChange={(e) => setIdentifier(e.target.value)}
               required
             />
           </div>
