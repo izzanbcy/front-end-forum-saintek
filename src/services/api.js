@@ -23,8 +23,11 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
+    // Skip retry logic if it's a login request to avoid clearing form state on error
+    const isLoginRequest = originalRequest.url === '/authentications' && originalRequest.method === 'post';
+
     // Check if error is 401 and not already retried
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 401 && !originalRequest._retry && !isLoginRequest) {
       originalRequest._retry = true;
       const refreshToken = useAuthStore.getState().refreshToken;
 
@@ -47,13 +50,17 @@ api.interceptors.response.use(
           // Refresh token might be expired as well
           console.error('Refresh token failed:', refreshError);
           useAuthStore.getState().logout();
-          window.location.href = '/login';
+          if (window.location.pathname !== '/login') {
+            window.location.href = '/login';
+          }
           return Promise.reject(refreshError);
         }
       } else {
         // No refresh token available, just logout
         useAuthStore.getState().logout();
-        window.location.href = '/login';
+        if (window.location.pathname !== '/login') {
+          window.location.href = '/login';
+        }
       }
     }
 
