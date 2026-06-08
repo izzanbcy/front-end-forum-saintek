@@ -92,7 +92,7 @@ export default function Register() {
               id="email"
               type="email"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="you@mhs.unsri.ac.id"
+              placeholder="227611001@mhs.uinsaid.ac.id"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -107,7 +107,7 @@ export default function Register() {
               id="prodi"
               type="text"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Teknik Informatika"
+              placeholder="Sains Data"
               value={prodi}
               onChange={(e) => setProdi(e.target.value)}
               required
