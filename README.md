@@ -29,7 +29,7 @@ Forum SAINTEK adalah platform diskusi daring yang dirancang khusus untuk mahasis
 1. Clone repositori ini:
    ```bash
    git clone https://github.com/izzanbcy/front-end-forum-saintek
-   cd forum-saintek
+   cd front-end-forum-saintek
    ```
 
 2. Instal dependensi:
