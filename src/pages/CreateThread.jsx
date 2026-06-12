@@ -68,6 +68,7 @@ export default function CreateThread() {
         title: title.trim(),
         content: content.trim(),
         subforumSlug: subforumSlug,
+        isAnonymous: subforumSlug === 'saintekfess',
       });
 
       const newThreadId = response.data?.data?.id;
